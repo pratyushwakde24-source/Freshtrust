@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FreshTrust – India's Most Transparent Meat Delivery & Live Butcher Cam Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Global Toast Notification & Offline Connection Banners -->
+  <div id="offline-banner">⚠️ Offline Connection Detected - Switching to Local Sharded Cache Simulation...</div>
+  <div id="global-toast"><span id="toast-icon">ℹ️</span><span id="toast-text">Notification message</span></div>
+
+  <!-- ======================================================================
+       Floating Master Suite & Viewport Simulator Bar
+       ====================================================================== -->
+  <header class="simulator-header">
+    <div class="sim-brand" onclick="navigateToScreen('screen-home')">
+      <div class="sim-logo-icon">FT</div>
+      <div class="sim-brand-text">
+        <h1>FreshTrust Studio</h1>
+        <p>India's Most Transparent Meat Delivery & Live Butcher Cam Platform</p>
+      </div>
+    </div>
+
+    <!-- Suite Switcher Pill -->
+    <div class="suite-selector">
+      <button class="suite-btn active" onclick="switchSuite('customer', this)">📱 Customer App (24+ Screens)</button>
+      <button class="suite-btn" onclick="switchSuite('worker', this)">🔪 Worker & Butcher App</button>
+      <button class="suite-btn" onclick="switchSuite('shop-owner', this)">🏬 Shop Owner Dashboard</button>
+      <button class="suite-btn" onclick="switchSuite('delivery', this)">🛵 Delivery Partner App</button>
+      <button class="suite-btn" onclick="switchSuite('super-admin', this)">🛡️ Super Admin Governance</button>
+    </div>
+
+    <!-- Viewport Mode Selector & Session Profile Switcher -->
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div class="viewport-selector">
+        <button class="view-btn active" onclick="switchViewport('mobile', this)">📱 iPhone 16 Pro Max</button>
+        <button class="view-btn" onclick="switchViewport('tablet', this)">📟 iPad Pro</button>
+        <button class="view-btn" onclick="switchViewport('desktop', this)">💻 Desktop</button>
+      </div>
+      <button class="btn-secondary" style="padding: 6px 12px; font-size: 11px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2);" onclick="openProfileSwitcherModal()">
+        👤 Profile: Pratyush ▾
+      </button>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       Simulator Stage & Device Frame Container
+       ====================================================================== -->
+  <main class="simulator-stage">
+    <div id="device-frame" class="viewport-frame mode-mobile">
+
+      <!-- ==================================================================
+           SUITE 1: CUSTOMER APPLICATION (`#suite-customer`)
+           ================================================================== -->
+      <div id="suite-customer" class="suite-view active">
+        
+        <!-- Redesigned Sticky Top Navigation Header -->
+        <header class="app-topbar">
+          <!-- Left: Brand Logo & Tagline -->
+          <div class="brand-logo-container" onclick="navigateToScreen('screen-home')">
+            <div class="brand-logo-icon">🥩</div>
+            <div>
+              <h1 class="brand-title">FreshTrust</h1>
+              <span class="brand-tagline">See Freshness Before You Buy</span>
+            </div>
+          </div>
+
+          <!-- Center: Clean Navigation Links -->
+          <div class="desktop-nav-links">
+            <a class="desktop-nav-link active" onclick="navigateToScreen('screen-home', this)">🏠 Home</a>
+            <a class="desktop-nav-link" onclick="navigateToScreen('screen-categories', this)">🥩 Categories</a>
+            <a class="desktop-nav-link" onclick="navigateToScreen('screen-live-cam', this)">🎥 Live Cam</a>
+            <a class="desktop-nav-link" onclick="navigateToScreen('screen-membership', this)">👑 VIP Pass</a>
+            <a class="desktop-nav-link" onclick="navigateToScreen('screen-order-history', this)">📦 Orders</a>
+            <a class="desktop-nav-link" onclick="navigateToScreen('screen-support', this)">💬 Support</a>
+          </div>
+
+          <!-- Right: Notifications, Cart, Profile & Switch Workspace Admin Dropdown -->
+          <div class="app-topbar-right">
+            <button class="icon-btn-circle" onclick="openSearchModal()" title="Search & Voice">🔍</button>
+            <button class="icon-btn-circle" onclick="navigateToScreen('screen-notifications')" title="Notifications">
+              🔔<span class="badge-count" id="header-notif-count">2</span>
+            </button>
+            
+            <!-- Quick Cart Pill -->
+            <div class="desktop-cart-pill" onclick="navigateToScreen('screen-cart')" title="Open Cart">
+              🛒 <span id="header-desktop-cart-text">2 Items | ₹1,040</span>
+            </div>
+
+            <button class="icon-btn-circle" onclick="navigateToScreen('screen-profile')" title="My Profile">
+              👤
+            </button>
+
+            <!-- Admin Workspace Switcher Dropdown -->
+            <div class="workspace-dropdown-container">
+              <button class="workspace-trigger-btn" onclick="toggleWorkspaceMenu(event)">
+                ⚙️ Switch Workspace ▾
+              </button>
+              <div class="workspace-menu" id="workspace-menu">
+                <div class="workspace-item active" onclick="switchSuite('customer', this)">📱 Customer App</div>
+                <div class="workspace-item" onclick="switchSuite('worker', this)">🔪 Worker & Butcher App</div>
+                <div class="workspace-item" onclick="switchSuite('shop-owner', this)">🏬 Shop Owner Dashboard</div>
+                <div class="workspace-item" onclick="switchSuite('delivery', this)">🛵 Delivery Rider App</div>
+                <div class="workspace-item" onclick="switchSuite('super-admin', this)">🛡️ Super Admin Governance</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Main Scrollable Screen Content Container -->
+        <div class="customer-app-content">
+
+          <!-- 1. SPLASH SCREEN (`#screen-splash`) -->
+          <div id="screen-splash" class="screen-content">
+            <div class="splash-screen">
+              <div class="splash-logo-pulse">🥩</div>
+              <h1 style="font-size: 32px; font-weight: 900; letter-spacing: -1px; margin-bottom: 8px;">FreshTrust</h1>
+              <p style="font-size: 15px; color: #94A3B8; max-width: 280px; margin-bottom: 36px;">Watch your own order being cut, trimmed, and weighed LIVE before it reaches your home.</p>
+              <button class="btn-primary" onclick="navigateToScreen('screen-onboarding')" style="max-width: 260px; margin-top: 20px;">
+                Enter Experience →
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. ONBOARDING CAROUSEL (`#screen-onboarding`) -->
+          <div id="screen-onboarding" class="screen-content">
+            <div id="onboard-slide-1" class="onboard-slide">
+              <div class="onboard-illustration">🥩</div>
+              <h2 style="font-size: 24px; font-weight: 800; color: var(--secondary); margin-bottom: 12px;">100% Farm-Fresh Artisanal Cuts</h2>
+              <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 36px;">Pasture-raised Deccan Highland mutton, free-range poultry, and wild-caught seafood sourced daily from verified green farms.</p>
+              <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+              <button class="btn-primary" onclick="showOnboardingSlide(2)">Next: Live Butcher Cam →</button>
+            </div>
+
+            <div id="onboard-slide-2" class="onboard-slide" style="display:none;">
+              <div class="onboard-illustration">🎥</div>
+              <h2 style="font-size: 24px; font-weight: 800; color: var(--secondary); margin-bottom: 12px;">Watch Your Order Prepared LIVE</h2>
+              <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 36px;">No more blind trust. Connect directly to our hygienic cutting studio. Watch Master Butchers precision trim and digitally weigh your meat in real time.</p>
+              <div class="carousel-dots"><span class="dot"></span><span class="dot active"></span><span class="dot"></span></div>
+              <button class="btn-primary" onclick="showOnboardingSlide(3)">Next: Cold-Chain Speed →</button>
+            </div>
+
+            <div id="onboard-slide-3" class="onboard-slide" style="display:none;">
+              <div class="onboard-illustration">⚡</div>
+              <h2 style="font-size: 24px; font-weight: 800; color: var(--secondary); margin-bottom: 12px;">30-Min Cold-Chain Express Speed</h2>
+              <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 36px;">Vacuum sealed at 1.8°C with digital scale verification and FSSAI quality audit stamp delivered at Swiggy Instamart speed.</p>
+              <div class="carousel-dots"><span class="dot"></span><span class="dot"></span><span class="dot active"></span></div>
+              <button class="btn-primary" onclick="navigateToScreen('screen-login')">Get Started & Verify OTP →</button>
+            </div>
+          </div>
+
+          <!-- 3. LOGIN SCREEN (`#screen-login`) -->
+          <div id="screen-login" class="screen-content">
+            <div class="auth-box">
+              <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px; color: var(--secondary);">Welcome to FreshTrust</h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 24px;">Enter your mobile number to access India's only live-streamed meat studio.</p>
+              
+              <div class="input-group">
+                <label class="input-label">Mobile Number (India)</label>
+                <input type="text" class="text-input" id="login-phone" value="+91 98765 43210" placeholder="+91 98765 43210" />
+              </div>
+
+              <button class="btn-primary" onclick="validateAndSendOtp()">
+                Send 4-Digit OTP Verification →
+              </button>
+
+              <div style="display: flex; justify-content: space-between; margin: 16px 0; font-size: 13px;">
+                <a style="color: var(--primary); font-weight: 700; cursor: pointer;" onclick="navigateToScreen('screen-signup')">Create Account</a>
+                <a style="color: var(--text-secondary); cursor: pointer;" onclick="openForgotPassModal()">Forgot Password?</a>
+              </div>
+
+              <div style="margin: 20px 0; text-align: center; color: var(--text-muted); font-size: 12px;">OR CONTINUE WITH</div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <button class="btn-secondary" onclick="simulateSocialLogin('Google')">🌐 Google</button>
+                <button class="btn-secondary" onclick="simulateSocialLogin('Apple')">🍏 Apple ID</button>
+              </div>
+
+              <button class="btn-secondary" style="width: 100%; margin-top: 14px; background: transparent; border: 1px dashed var(--border);" onclick="simulateGuestLogin()">
+                👤 Continue as Guest
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. SIGNUP SCREEN (`#screen-signup`) -->
+          <div id="screen-signup" class="screen-content">
+            <div class="auth-box">
+              <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 6px; color: var(--secondary);">Create Studio Account</h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Join 100,000+ connoisseurs enjoying transparent meat delivery.</p>
+              
+              <div class="input-group">
+                <label class="input-label">Full Name</label>
+                <input type="text" class="text-input" id="signup-name" placeholder="Pratyush Sharma" value="Pratyush Sharma" />
+              </div>
+              <div class="input-group">
+                <label class="input-label">Email Address</label>
+                <input type="email" class="text-input" id="signup-email" placeholder="pratyush@freshtrust.luxury" value="pratyush@freshtrust.luxury" />
+              </div>
+              <div class="input-group">
+                <label class="input-label">Mobile Number</label>
+                <input type="text" class="text-input" id="signup-phone" placeholder="+91 98765 43210" value="+91 98765 43210" />
+              </div>
+
+              <button class="btn-primary" onclick="validateAndSendOtp()">Create & Verify OTP →</button>
+              <button class="btn-secondary" style="width: 100%; margin-top: 12px;" onclick="navigateToScreen('screen-login')">Already have an account? Login</button>
+            </div>
+          </div>
+
+          <!-- 5. OTP VERIFICATION SCREEN (`#screen-otp`) -->
+          <div id="screen-otp" class="screen-content">
+            <div class="auth-box">
+              <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 6px; color: var(--secondary);">Verify OTP Code</h2>
+              <p style="font-size: 13px; color: var(--text-secondary);">We sent a 4-digit verification code to <b style="color:var(--primary);" id="otp-phone-display">+91 98765 43210</b></p>
+              
+              <div class="otp-grid">
+                <input type="text" class="otp-box" id="otp-1" value="4" maxlength="1" onkeyup="focusNextOtp(this, 'otp-2')" />
+                <input type="text" class="otp-box" id="otp-2" value="9" maxlength="1" onkeyup="focusNextOtp(this, 'otp-3')" />
+                <input type="text" class="otp-box" id="otp-3" value="2" maxlength="1" onkeyup="focusNextOtp(this, 'otp-4')" />
+                <input type="text" class="otp-box" id="otp-4" value="6" maxlength="1" />
+              </div>
+
+              <button class="btn-primary" onclick="verifyOtpAndEnter()">Verify & Enter Studio →</button>
+
+              <div style="margin-top: 20px; text-align: center; font-size: 13px; color: var(--text-secondary);">
+                Resend code in <b id="otp-timer" style="color:var(--primary);">00:42</b> <a style="color:var(--primary); cursor:pointer; margin-left:8px;" onclick="resendOtp()">Resend Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. HOME SCREEN (`#screen-home`) -->
+          <div id="screen-home" class="screen-content active">
+            
+            <!-- Primary Visual Search Experience Bar -->
+            <div class="hero-search-wrapper">
+              <div class="primary-search-bar" onclick="openSearchModal()">
+                <span style="font-size: 20px; color: var(--primary);">🔍</span>
+                <input type="text" class="primary-search-input" placeholder="Search Chicken, Mutton, Fish, Prawns, Wagyu..." readonly />
+                <button class="search-action-btn" title="Voice Search" onclick="event.stopPropagation(); simulateVoiceSearch()">🎙️</button>
+                <button class="search-action-btn" title="Camera Scan" onclick="event.stopPropagation(); alert('AI Camera Freshness Scanner Activated')">📷</button>
+                <button class="search-action-btn" title="Filter" onclick="event.stopPropagation(); openFilterModal()">🎛️</button>
+              </div>
+
+              <!-- Typing / Click Dropdown Results -->
+              <div class="search-dropdown-results" id="search-dropdown-modal">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+                  <h4 style="font-size:14px; font-weight:800; color:var(--secondary);">Search Fresh Cuts & Dark Stores</h4>
+                  <button class="btn-secondary" style="padding:4px 10px; font-size:11px;" onclick="closeSearchModal()">Close ✕</button>
+                </div>
+                
+                <div style="margin-bottom:16px;">
+                  <div style="font-size:11px; font-weight:800; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">🕒 Recent Searches</div>
+                  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <span style="background:#F1F5F9; font-size:12px; font-weight:600; padding:6px 12px; border-radius:var(--radius-full); cursor:pointer;" onclick="selectProduct('prod-1')">Biryani Cut Mutton</span>
+                    <span style="background:#F1F5F9; font-size:12px; font-weight:600; padding:6px 12px; border-radius:var(--radius-full); cursor:pointer;" onclick="selectProduct('prod-2')">Country Chicken Breast</span>
+                    <span style="background:#F1F5F9; font-size:12px; font-weight:600; padding:6px 12px; border-radius:var(--radius-full); cursor:pointer;" onclick="selectProduct('prod-3')">Atlantic Salmon Fillet</span>
+                  </div>
+                </div>
+
+                <div style="margin-bottom:16px;">
+                  <div style="font-size:11px; font-weight:800; color:var(--primary); text-transform:uppercase; margin-bottom:8px;">🔥 Trending Searches</div>
+                  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <span style="background:var(--primary-light); color:var(--primary); font-size:12px; font-weight:700; padding:6px 12px; border-radius:var(--radius-full); cursor:pointer;" onclick="selectProduct('prod-4')">Miyazaki A5 Wagyu</span>
+                    <span style="background:var(--primary-light); color:var(--primary); font-size:12px; font-weight:700; padding:6px 12px; border-radius:var(--radius-full); cursor:pointer;" onclick="selectProduct('prod-1')">Deccan Lamb Rib Chops</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="font-size:11px; font-weight:800; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">🏬 Nearby Verified Dark Stores</div>
+                  <div style="display:flex; flex-direction:column; gap:8px;">
+                    <div style="font-size:13px; font-weight:700; cursor:pointer;" onclick="openShopProfile('shop-1')">📍 Atelier Meat Co. (BKC DarkStore) • 1.2 km (24 min ETA)</div>
+                    <div style="font-size:13px; font-weight:700; cursor:pointer;" onclick="openShopProfile('shop-2')">📍 Deccan Highland Studio (Pune) • 3.2 km (28 min ETA)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Auto-Scrolling Cinematic Hero Carousel -->
+            <div class="hero-carousel-container" id="home-hero-carousel">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+
+            <!-- Trust Bar Section -->
+            <div id="trust-bar-section">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+
+            <!-- Shop by Category Grid -->
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+              <h3 style="font-size:20px; font-weight:900; color:var(--secondary);">Shop by Category</h3>
+              <a style="font-size:13px; font-weight:800; color:var(--primary); cursor:pointer;" onclick="navigateToScreen('screen-categories')">View All (8) →</a>
+            </div>
+            <div class="categories-grid" id="home-categories-list">
+              <!-- Rendered via app.js -->
+            </div>
+
+            <!-- LIVE NOW Section -->
+            <div id="live-now-section">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+
+            <!-- Nearby Verified Dark Store Studios -->
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+              <h3 style="font-size:20px; font-weight:900; color:var(--secondary);">Nearby Verified Dark Stores</h3>
+              <span style="font-size:11px; color:var(--accent); font-weight:800; background:var(--accent-light); padding:4px 10px; border-radius:var(--radius-full);">✅ FSSAI 100% Audited</span>
+            </div>
+            <div id="home-shops-list" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px;">
+              <!-- Rendered via app.js -->
+            </div>
+
+            <!-- Trending Fresh Cuts Grid -->
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+              <h3 style="font-size:20px; font-weight:900; color:var(--secondary);">Trending Artisanal Cuts</h3>
+              <a style="font-size:13px; font-weight:800; color:var(--primary); cursor:pointer;" onclick="navigateToScreen('screen-categories')">See Full Catalog →</a>
+            </div>
+            <div class="products-grid" id="home-products-grid">
+              <!-- Rendered via app.js -->
+            </div>
+
+            <!-- Luxury Membership (FreshTrust VIP Pass Banner) -->
+            <div style="background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 60%, #2A240A 100%); border: 1px solid var(--gold); border-radius: var(--radius-xl); padding: 28px; color: #fff; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: var(--shadow-lg);" onclick="navigateToScreen('screen-membership')">
+              <div>
+                <span style="background: var(--gold); color: #000; font-size: 11px; font-weight: 900; padding: 4px 10px; border-radius: 6px; text-transform: uppercase;">FreshTrust VIP Atelier Pass</span>
+                <h4 style="font-size: 20px; font-weight: 900; color: var(--gold); margin: 8px 0;">Unlimited 0₹ Free Express Delivery + Priority Live Cutting</h4>
+                <p style="font-size: 13px; color: #CBD5E1;">Join 25,000+ VIP members enjoying zero delivery charges & dedicated master butcher streams.</p>
+              </div>
+              <button class="btn-primary" style="background: var(--gold); color: #000; font-weight: 900;" onclick="event.stopPropagation(); navigateToScreen('screen-membership')">
+                Become VIP →
+              </button>
+            </div>
+
+            <!-- Why FreshTrust Section -->
+            <div id="why-freshtrust-section">
+              <!-- Rendered via app.js -->
+            </div>
+
+            <!-- Customer Testimonials Section -->
+            <div id="testimonials-section" style="margin-bottom: 36px;">
+              <!-- Rendered via app.js -->
+            </div>
+
+            <!-- Multi-Column Dark Footer -->
+            <footer class="app-footer">
+              <div class="footer-grid">
+                <div>
+                  <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                    <div style="width:36px; height:36px; background:var(--primary); border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:20px;">🥩</div>
+                    <h3 style="color:#fff; font-size:20px; font-weight:900;">FreshTrust</h3>
+                  </div>
+                  <p style="font-size:13px; color:#94A3B8; line-height:1.6; max-width:320px; margin-bottom:20px;">India's Most Transparent Meat Delivery Platform. Connect directly to live camera cutting studios and receive vacuum-sealed fresh meat in 24 minutes.</p>
+                  <div style="font-size:12px; color:#64748B;">© 2026 FreshTrust Technologies Inc. All rights reserved.</div>
+                </div>
+
+                <div class="footer-col">
+                  <h5>Customer Support</h5>
+                  <a>Live Studio Chat</a>
+                  <a>Track Active Order</a>
+                  <a>Cold Chain Refund Guarantee</a>
+                  <a>Freshness Audit Reports</a>
+                </div>
+
+                <div class="footer-col">
+                  <h5>Our Categories</h5>
+                  <a>Fresh Free-Range Chicken</a>
+                  <a>Deccan Highland Mutton</a>
+                  <a>Norwegian Atlantic Salmon</a>
+                  <a>Japanese A5 Miyazaki Wagyu</a>
+                </div>
+
+                <div class="footer-col">
+                  <h5>Business & DarkStores</h5>
+                  <a>Partner DarkStore Onboarding</a>
+                  <a>Worker & Butcher Academy</a>
+                  <a>Delivery Fleet Registration</a>
+                  <a>FSSAI Compliance Portal</a>
+                </div>
+
+                <div class="footer-col">
+                  <h5>Company & Legal</h5>
+                  <a>About FreshTrust</a>
+                  <a>Transparency Manifesto</a>
+                  <a>Privacy Policy</a>
+                  <a>Terms of Service</a>
+                </div>
+              </div>
+            </footer>
+
+          </div>
+
+          <!-- 7. CATEGORIES & ALL PRODUCTS SCREEN (`#screen-categories`) -->
+          <div id="screen-categories" class="screen-content">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+              <div>
+                <h2 style="font-size: 22px; font-weight: 800; color: var(--secondary);">All Fresh Stock Categories</h2>
+                <p style="font-size: 13px; color: var(--text-secondary);">Sourced direct from verified green farms. Hand-trimmed live on order.</p>
+              </div>
+              <button class="btn-secondary" style="padding: 8px 14px;" onclick="openFilterModal()">🎛️ Filter Cuts</button>
+            </div>
+            <div class="products-grid" id="full-categories-grid">
+              <!-- Rendered via app.js -->
+            </div>
+          </div>
+
+          <!-- 8. PRODUCT DETAILS SCREEN (`#screen-product-detail`) -->
+          <div id="screen-product-detail" class="screen-content">
+            <!-- Rendered dynamically by selectProduct('prod-1') in app.js -->
+            <div id="product-detail-container"></div>
+          </div>
+
+          <!-- 9. SHOP PROFILE SCREEN (`#screen-shop-profile`) -->
+          <div id="screen-shop-profile" class="screen-content">
+            <!-- Rendered dynamically by openShopProfile('shop-1') in app.js -->
+            <div id="shop-profile-container"></div>
+          </div>
+
+          <!-- 10. CART DRAWER / SCREEN (`#screen-cart`) -->
+          <div id="screen-cart" class="screen-content">
+            <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 16px; color: var(--secondary);">Your Artisanal Cart</h2>
+            <div id="cart-items-container" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px;">
+              <!-- Rendered via app.js -->
+            </div>
+
+            <!-- Custom Butcher Instructions -->
+            <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+              <label style="display: block; font-size: 13px; font-weight: 700; color: var(--secondary); margin-bottom: 8px;">🔪 Custom Master Butcher Instructions</label>
+              <textarea class="text-input" id="cart-notes" rows="2" placeholder="Example: Remove excess fat from the edges, medium 3cm dice for biryani..."></textarea>
+            </div>
+
+            <!-- Coupon Promo Code Applier -->
+            <div id="cart-coupon-banner" style="background: var(--card-bg); border: 1px dashed var(--primary); border-radius: var(--radius-md); padding: 14px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 22px;">🏷️</span>
+                <div>
+                  <h5 style="font-size: 13px; font-weight: 800; color: var(--primary);" id="applied-coupon-name">Coupon FRESHTRUST50 Applied!</h5>
+                  <p style="font-size: 11px; color: var(--text-secondary);" id="applied-coupon-desc">Flat ₹150 OFF on your live cutting studio order.</p>
+                </div>
+              </div>
+              <div style="display: flex; gap: 6px;">
+                <button class="btn-secondary" style="font-size: 11px; padding: 6px 12px;" onclick="openCouponModal()">Change</button>
+                <button class="btn-secondary" style="font-size: 11px; padding: 6px 10px; color: var(--danger); border-color: var(--danger);" onclick="removeAppliedCoupon()">✕</button>
+              </div>
+            </div>
+
+            <!-- Delivery Speed Picker -->
+            <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+              <h5 style="font-size: 13px; font-weight: 800; margin-bottom: 10px;">⚡ Delivery Speed Preference</h5>
+              <div style="display: flex; gap: 12px;">
+                <label style="flex: 1; border: 2px solid var(--primary); background: var(--primary-light); padding: 12px; border-radius: var(--radius-sm); cursor: pointer;">
+                  <input type="radio" name="d-speed" checked /> <b>30-Min Cold Chain Express</b><br/><span style="font-size: 11px; color: var(--text-secondary);">Dispatched right after live cutting</span>
+                </label>
+                <label style="flex: 1; border: 1px solid var(--border); padding: 12px; border-radius: var(--radius-sm); cursor: pointer;" onclick="alert('Pick slot: Tomorrow 08:00 AM - 10:00 AM slot reserved!')">
+                  <input type="radio" name="d-speed" /> <b>Schedule Delivery Slot</b><br/><span style="font-size: 11px; color: var(--text-secondary);">Pick exact date & window</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Transparent Bill Breakdown -->
+            <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; margin-bottom: 24px;">
+              <h4 style="font-size: 15px; font-weight: 800; margin-bottom: 12px;">Transparent Fee Breakdown</h4>
+              <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px;">
+                <span>Item Total</span>
+                <b id="cart-item-total">₹1,040</b>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; color: var(--accent);">
+                <span>Coupon Discount</span>
+                <b id="cart-discount-val">-₹150</b>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px;">
+                <span>Taxes (GST 5%)</span>
+                <b id="cart-tax-val">₹44</b>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px;">
+                <span>Delivery Fee (Atelier Pass VIP)</span>
+                <b style="color: var(--accent);">FREE (₹0)</b>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+                <span>Cold-Chain Thermal Packaging (1.8°C)</span>
+                <b>₹25</b>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; color: var(--primary);">
+                <span>Grand Total</span>
+                <span id="cart-grand-total">₹959</span>
+              </div>
+            </div>
+
+            <button class="btn-primary" onclick="proceedToCheckout()">
+              Proceed to Address & Checkout (<span id="btn-cart-total">₹959</span>) →
+            </button>
+          </div>
+
+          <!-- 11. CHECKOUT SCREEN (`#screen-checkout`) -->
+          <div id="screen-checkout" class="screen-content">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+              <h2 style="font-size: 22px; font-weight: 800; color: var(--secondary);">Select Delivery Address</h2>
+              <button class="btn-secondary" style="font-size: 12px; padding: 6px 12px;" onclick="openAddressModal()">+ Add Address</button>
+            </div>
+            
+            <div id="checkout-address-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
+              <!-- Rendered via app.js -->
+            </div>
+
+            <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 24px;">
+              <h5 style="font-size: 14px; font-weight: 800; margin-bottom: 10px;">📦 Contactless Delivery Options</h5>
+              <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; cursor: pointer;">
+                <input type="checkbox" checked /> Leave bag at my door & notify via SMS/App
+              </label>
+            </div>
+
+            <button class="btn-primary" id="place-order-btn" onclick="placeOrderSimulation()">
+              Place Order & Connect to Studio →
+            </button>
+          </div>
+
+          <!-- 12. PAYMENT GATEWAY SCREEN (`#screen-payment`) -->
+          <div id="screen-payment" class="screen-content">
+            <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 6px; color: var(--secondary);">Secure Payment Gateway</h2>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">All transactions are encrypted with 256-bit bank security.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px;">
+              
+              <!-- Butcher Wallet Option -->
+              <div style="background: linear-gradient(135deg, #111111 0%, #1E293B 100%); color: #fff; border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--gold); cursor: pointer;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span style="font-size: 26px;">💳</span>
+                  <div>
+                    <h4 style="font-size: 14px; font-weight: 800; color: var(--gold);">Butcher's Club Wallet</h4>
+                    <p style="font-size: 12px; color: #CBD5E1;">Available Balance: ₹1,450 (Instant 2% cashback)</p>
+                  </div>
+                </div>
+                <input type="radio" name="pay-method" checked style="width: 20px; height: 20px;" />
+              </div>
+
+              <!-- UPI Option -->
+              <div style="background: #fff; border: 2px solid var(--primary); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: var(--secondary);">Recommended UPI (GPay / PhonePe / Paytm)</h4>
+                  <p style="font-size: 12px; color: var(--text-secondary);">Pratyush@okaxis (One-Click Verify)</p>
+                </div>
+                <input type="radio" name="pay-method" style="width: 20px; height: 20px;" />
+              </div>
+
+              <!-- Credit/Debit Card -->
+              <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 700;">Credit / Debit Cards (Visa / Mastercard / RuPay)</h4>
+                  <p style="font-size: 12px; color: var(--text-muted);">HDFC Bank Credit Card ending in 8821</p>
+                </div>
+                <input type="radio" name="pay-method" style="width: 20px; height: 20px;" />
+              </div>
+
+              <!-- Cash on Delivery -->
+              <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 700;">Cash on Delivery (COD)</h4>
+                  <p style="font-size: 12px; color: var(--text-muted);">Pay cash or UPI upon cold-box delivery</p>
+                </div>
+                <input type="radio" name="pay-method" style="width: 20px; height: 20px;" />
+              </div>
+
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <button class="btn-primary" onclick="simulatePaymentResult(true)">
+                🔒 Pay ₹959 Securely →
+              </button>
+              <button class="btn-danger" onclick="simulatePaymentResult(false)">
+                ❌ Simulate Payment Failure
+              </button>
+            </div>
+          </div>
+
+          <!-- 13. ORDER SUCCESS SCREEN (`#screen-order-success`) -->
+          <div id="screen-order-success" class="screen-content">
+            <div style="text-align: center; padding: 32px 16px;">
+              <div style="width: 90px; height: 90px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; margin: 0 auto 20px auto; box-shadow: 0 0 30px rgba(46,125,50,0.4);">
+                🎉
+              </div>
+              <h2 style="font-size: 26px; font-weight: 800; color: var(--secondary); margin-bottom: 6px;">Order Confirmed!</h2>
+              <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 12px;">Order ID <b style="color:var(--primary);">#FT-89241</b> placed successfully.</p>
+              
+              <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; text-align: left; margin: 24px 0;">
+                <h4 style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">Studio Assignment Status:</h4>
+                <p style="font-size: 13px; color: var(--secondary); margin-bottom: 6px;">🏬 Studio: <b>Atelier Meat Co. (Flagship Studio)</b></p>
+                <p style="font-size: 13px; color: var(--accent); font-weight: 700;">🎥 Station 1 is preparing your order LIVE right now!</p>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button class="btn-primary" onclick="navigateToScreen('screen-live-cam')" style="font-size: 16px; padding: 18px 24px; animation: pulse-red 1.5s infinite;">
+                  🎥 Watch Live Preparation Now →
+                </button>
+                <button class="btn-secondary" onclick="downloadInvoice('#FT-89241')">
+                  📥 Download Tax Invoice PDF
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 14. PAYMENT FAILED SCREEN (`#screen-payment-failed`) -->
+          <div id="screen-payment-failed" class="screen-content">
+            <div style="text-align: center; padding: 40px 16px;">
+              <div style="width: 90px; height: 90px; background: #FEE2E2; color: var(--danger); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; margin: 0 auto 20px auto;">
+                ⚠️
+              </div>
+              <h2 style="font-size: 24px; font-weight: 800; color: var(--danger); margin-bottom: 8px;">Payment Transaction Failed</h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 24px;">Your bank declined the transaction or session timed out. No amount was debited from your account.</p>
+              
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button class="btn-primary" onclick="navigateToScreen('screen-payment')">🔄 Retry Payment</button>
+                <button class="btn-secondary" onclick="navigateToScreen('screen-cart')">← Return to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 15. LIVE PREPARATION WAITING SCREEN (`#screen-live-waiting`) -->
+          <div id="screen-live-waiting" class="screen-content">
+            <div style="text-align: center; padding: 50px 20px;">
+              <div class="skeleton" style="width: 100%; height: 240px; border-radius: var(--radius-lg); margin-bottom: 24px;"></div>
+              <h3 style="font-size: 20px; font-weight: 800; color: var(--secondary); margin-bottom: 8px;">Connecting to Master Butcher Studio...</h3>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Establishing secure low-latency HD video stream with Station 1 and syncing Bluetooth Digital Scale...</p>
+              <button class="btn-secondary" onclick="navigateToScreen('screen-live-cam')">Force Connect Stream →</button>
+            </div>
+          </div>
+
+          <!-- 16. FLAGSHIP LIVE BUTCHER CAM SCREEN (`#screen-live-cam`) -->
+          <div id="screen-live-cam" class="screen-content">
+            
+            <!-- Live Header -->
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+              <div>
+                <span style="font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px;">Flagship Live Feature</span>
+                <h2 style="font-size: 22px; font-weight: 800; color: var(--secondary);">Live Butcher Cam Studio</h2>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-secondary" style="font-size: 11px; padding: 6px 12px; border-color: var(--primary); color: var(--primary);" onclick="takeScreenshot()">📸 Screenshot</button>
+                <button class="btn-danger" style="font-size: 11px; padding: 6px 12px;" onclick="endLiveStream()">End Live</button>
+              </div>
+            </div>
+
+            <!-- Responsive Desktop Side-by-Side Grid Container -->
+            <div class="live-cam-desktop-grid">
+              
+              <!-- LEFT COLUMN: Live HD Stream Stage + Bluetooth Scale + Reactions -->
+              <div class="live-cam-left-col">
+                <!-- HD Video Player Stage with Pulsing Status -->
+                <div class="live-stream-stage">
+                  <img src="https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=1000&auto=format&fit=crop&q=80" class="live-video-player" id="main-live-video-img" alt="Live Butcher Feed" />
+                  
+                  <div class="live-overlay-top">
+                    <div class="rec-pill"><span class="live-dot"></span> REC • LIVE FROM ATELIER MEAT CO.</div>
+                    <div class="timer-pill">ELAPSED: <span id="elapsed-timer">04:12</span></div>
+                  </div>
+
+                  <!-- Floating Controls at Bottom of Video -->
+                  <div style="position: absolute; bottom: 12px; right: 12px; display: flex; gap: 8px; z-index: 10;">
+                    <button class="view-btn" style="background: rgba(0,0,0,0.75); color: #fff;" onclick="toggleMute(this)">🔊 Audio On</button>
+                    <button class="view-btn" style="background: rgba(0,0,0,0.75); color: #fff;" onclick="togglePiP()">🔲 PiP Mode</button>
+                    <button class="view-btn" style="background: rgba(0,0,0,0.75); color: #fff;" onclick="toggleFullscreen()">📺 Fullscreen</button>
+                  </div>
+                </div>
+
+                <!-- Digital Bluetooth Scale Weight Verification Card -->
+                <div class="scale-verification-card">
+                  <div class="scale-header">
+                    <h4>⚖️ Digital Bluetooth Scale Live Readout</h4>
+                    <span class="scale-badge-verified">✅ SCALE SYNCED & AUDITED</span>
+                  </div>
+                  <div class="scale-numbers">
+                    <div class="scale-col">
+                      <h5 style="font-size: 11px; color: #94A3B8; text-transform: uppercase;">Requested Weight</h5>
+                      <div class="reading">500g</div>
+                    </div>
+                    <div class="scale-col">
+                      <h5 style="font-size: 11px; color: #94A3B8; text-transform: uppercase;">Live Scale Readout</h5>
+                      <div class="reading verified" id="live-scale-readout">502g ✅</div>
+                    </div>
+                  </div>
+                  <p style="font-size: 11px; color: #94A3B8; margin-top: 10px;">Scale ID: BT-SCALE-ATELIER-01 • Zero tolerance for under-weighing guaranteed.</p>
+                </div>
+
+                <!-- Reaction Emojis Burst -->
+                <div class="reactions-bar" style="margin-bottom: 20px;">
+                  <button class="reaction-btn" onclick="sendReaction('🔥')">🔥</button>
+                  <button class="reaction-btn" onclick="sendReaction('👍')">👍</button>
+                  <button class="reaction-btn" onclick="sendReaction('❤️')">❤️</button>
+                  <button class="reaction-btn" onclick="sendReaction('🥩')">🥩</button>
+                  <button class="reaction-btn" onclick="sendReaction('👏')">👏</button>
+                </div>
+              </div>
+
+              <!-- RIGHT COLUMN: Master Butcher Info + Timeline + Direct Live Chat -->
+              <div class="live-cam-right-col">
+                <!-- Worker Profile Card -->
+                <div class="worker-card" style="margin-bottom: 16px;">
+                  <div style="display: flex; align-items: center; gap: 14px;">
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&auto=format&fit=crop&q=80" class="worker-avatar" alt="Chef Marcus" />
+                    <div>
+                      <h4 style="font-size: 14px; font-weight: 800; color: var(--secondary);">Master Butcher: Chef Marcus V.</h4>
+                      <p style="font-size: 12px; color: var(--text-secondary);">8+ Years Craft Experience • 1,420 Orders Completed</p>
+                    </div>
+                  </div>
+                  <span class="hygiene-score-pill">Hygiene: 99.8%</span>
+                </div>
+
+                <!-- Preparation Timeline Tracker -->
+                <div class="timeline-box" style="margin-bottom: 16px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="font-size: 15px; font-weight: 800; color: var(--secondary);">Preparation Timeline Progress</h4>
+                    <button class="btn-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="advanceTimelineStep()">Simulate Next Step →</button>
+                  </div>
+                  <div id="live-timeline-list">
+                    <!-- Rendered via app.js -->
+                  </div>
+                </div>
+
+                <!-- Interactive Chat with Worker Box -->
+                <div class="chat-window" style="margin-bottom: 16px;">
+                  <h5 style="font-size: 13px; font-weight: 800; margin-bottom: 10px; color: var(--secondary);">💬 Direct Chat with Chef Marcus</h5>
+                  <div class="chat-messages" id="live-chat-messages" style="height: 220px;">
+                    <div class="chat-msg chef">🎥 Live Butcher Cam connection established with Station 1.</div>
+                    <div class="chat-msg chef">Welcome Pratyush! I am Chef Marcus. I have selected prime 100% farm-fresh Deccan Highland lamb ribs for your order.</div>
+                    <div class="chat-msg user">Please make sure to remove any extra heavy fat from the edges!</div>
+                    <div class="chat-msg chef">Absolutely sir! I am trimming the outer layer right now and keeping only the tender marbling. Placing on Bluetooth digital scale now!</div>
+                  </div>
+                  <div id="chat-typing-indicator" style="font-size: 11px; color: var(--primary); font-style: italic; margin-bottom: 6px; display: none;">👨‍🍳 Chef Marcus is typing a reply...</div>
+                  <div style="display: flex; gap: 8px;">
+                    <input type="text" class="text-input" id="chat-input" placeholder="Ask Chef Marcus about your cut..." style="padding: 10px 14px; font-size: 13px;" onkeypress="if(event.key === 'Enter') sendChatMessage()" />
+                    <button class="btn-primary" style="width: auto; padding: 10px 18px;" onclick="sendChatMessage()">Send</button>
+                  </div>
+                </div>
+
+                <!-- Action Button to Advance to Packaging -->
+                <button class="btn-primary" onclick="navigateToScreen('screen-packaging')" style="background: var(--accent); box-shadow: 0 8px 20px rgba(46,125,50,0.3);">
+                  Check Cold-Chain Packaging & QR Audit →
+                </button>
+              </div>
+
+            </div> <!-- End of .live-cam-desktop-grid -->
+          </div>
+
+          <!-- 17. PACKAGING COMPLETE SCREEN (`#screen-packaging`) -->
+          <div id="screen-packaging" class="screen-content">
+            <div style="text-align: center; padding: 24px 16px;">
+              <span style="font-size: 64px;">📦</span>
+              <h2 style="font-size: 24px; font-weight: 800; color: var(--secondary); margin: 12px 0 6px 0;">Cold-Chain Packaging Complete!</h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 24px;">Your cut is vacuum-sealed at optimal thermal temperature.</p>
+
+              <div style="background: #fff; border: 2px solid var(--accent); border-radius: var(--radius-lg); padding: 20px; text-align: left; margin-bottom: 24px; box-shadow: var(--shadow-sm);">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 12px;">
+                  <div>
+                    <h4 style="font-size: 15px; font-weight: 800; color: var(--accent);">❄️ Thermal Audit Status</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);">Packed at 18:42 PM</p>
+                  </div>
+                  <span style="background: var(--accent-light); color: var(--accent); font-weight: 800; font-size: 12px; padding: 4px 10px; border-radius: 6px;">1.8°C OPTIMAL ✅</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; font-size: 13px;">
+                  <div>
+                    <span style="color: var(--text-muted); font-size: 11px;">DIGITAL SCALE AUDIT</span>
+                    <p style="font-weight: 800; color: var(--secondary);">502g Verified ✅</p>
+                  </div>
+                  <div>
+                    <span style="color: var(--text-muted); font-size: 11px;">QUALITY INSPECTOR</span>
+                    <p style="font-weight: 800; color: var(--secondary);">Signature: Neha R.</p>
+                  </div>
+                </div>
+
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--border); display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <h5 style="font-size: 13px; font-weight: 800;">Scan QR Code on Bag</h5>
+                    <p style="font-size: 11px; color: var(--text-secondary);">Verify farm origin, butcher log & scale readout</p>
+                  </div>
+                  <div style="width: 56px; height: 56px; background: #000; color: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; text-align: center; cursor: pointer;" onclick="alert('QR Scanned! Certificate of Origin: Deccan Green Farms #882.\nHygiene Index: 99.8%. Cold Chain Audit: Pass ✅')">
+                    QR PASS
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn-primary" onclick="navigateToScreen('screen-delivery-tracking')">
+                🛵 Track Apple Maps Live Delivery →
+              </button>
+            </div>
+          </div>
+
+          <!-- 18. LIVE DELIVERY TRACKING SCREEN (`#screen-delivery-tracking`) -->
+          <div id="screen-delivery-tracking" class="screen-content">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+              <div>
+                <h2 style="font-size: 22px; font-weight: 800; color: var(--secondary);">Apple Maps Live Tracking</h2>
+                <p style="font-size: 13px; color: var(--text-secondary);">Cold-box insulated rider is en route to your doorstep.</p>
+              </div>
+              <button class="btn-secondary" style="font-size: 11px; padding: 6px 12px;" onclick="refreshGpsTracking()">🔄 Refresh GPS</button>
+            </div>
+
+            <!-- Responsive Side-by-Side Desktop Container -->
+            <div class="delivery-desktop-grid">
+              
+              <!-- LEFT COLUMN: Large Live Tracking Map Stage -->
+              <div class="delivery-left-col">
+                <div class="map-container">
+                  <div class="map-route-canvas" style="background-image: radial-gradient(#2C3340 1px, transparent 1px); background-size: 20px 20px;">
+                    <svg width="100%" height="100%" style="position:absolute; top:0; left:0;">
+                      <path d="M 60,300 Q 180,240 200,160 T 340,60" fill="none" stroke="#B22222" stroke-width="4" stroke-dasharray="8,4" />
+                      <circle cx="60" cy="300" r="8" fill="#4CAF50" />
+                      <circle cx="340" cy="60" r="8" fill="#D4AF37" />
+                    </svg>
+                  </div>
+
+                  <!-- Animated Rider Marker -->
+                  <div class="rider-marker" id="animated-rider">🛵</div>
+
+                  <div class="eta-card">
+                    <h3 id="delivery-eta-mins">14 mins</h3>
+                    <p>Arriving by 18:56 PM • Cold Chain OK</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RIGHT COLUMN: Rider Profile + Milestones + Actions -->
+              <div class="delivery-right-col">
+                <!-- Rider Profile & Actions -->
+                <div class="worker-card" style="margin-bottom: 16px;">
+                  <div style="display: flex; align-items: center; gap: 14px;">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&auto=format&fit=crop&q=80" class="worker-avatar" alt="Vikram Singh" />
+                    <div>
+                      <h4 style="font-size: 14px; font-weight: 800; color: var(--secondary);">Vikram Singh (Cold-Chain Rider)</h4>
+                      <p style="font-size: 12px; color: var(--text-secondary);">4.96★ Rating • Electric Cold-Box Scooter (MH-02-EL-8821)</p>
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 8px;">
+                    <button class="btn-secondary" style="padding: 8px 12px; font-size: 14px;" title="Call Rider" onclick="callRider()">📞</button>
+                    <button class="btn-secondary" style="padding: 8px 12px; font-size: 14px;" title="Chat Rider" onclick="chatRider()">💬</button>
+                    <button class="btn-secondary" style="padding: 8px 12px; font-size: 14px;" title="Share Link" onclick="shareTrackingLink()">🔗</button>
+                  </div>
+                </div>
+
+                <div class="timeline-box" style="margin-bottom: 16px;">
+                  <h4 style="font-size: 15px; font-weight: 800; margin-bottom: 12px;">Delivery Milestones</h4>
+                  <div class="step-row completed">
+                    <div class="step-icon">✓</div>
+                    <div class="step-text"><h5>Picked Up from Atelier Studio</h5><p>Cold-box internal temp: 1.8°C</p></div>
+                  </div>
+                  <div class="step-row active">
+                    <div class="step-icon">🛵</div>
+                    <div class="step-text"><h5>Out For Delivery (BKC Flyover)</h5><p>Rider is ~1.4 km away from your location</p></div>
+                  </div>
+                  <div class="step-row">
+                    <div class="step-icon">🏠</div>
+                    <div class="step-text"><h5>Delivered at Doorstep</h5><p>Apartment 4B, BKC, Mumbai</p></div>
+                  </div>
+                </div>
+
+                <button class="btn-primary" onclick="navigateToScreen('screen-order-history')">
+                  View Order History & Replay Video →
+                </button>
+              </div>
+
+            </div> <!-- End of .delivery-desktop-grid -->
+          </div>
+
+          <!-- 19. ORDER HISTORY & REVIEWS SCREEN (`#screen-order-history`) -->
+          <div id="screen-order-history" class="screen-content">
+            <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 6px; color: var(--secondary);">Order History & Live Replays</h2>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Replay the exact HD video recording of your past meat preparation anytime.</p>
+            
+            <div id="order-history-list" style="display: flex; flex-direction: column; gap: 16px;">
+              <!-- Rendered via app.js -->
+            </div>
+          </div>
+
+          <!-- 20. PROFILE & SETTINGS SCREEN (`#screen-profile`) -->
+          <div id="screen-profile" class="screen-content">
+            <div class="worker-card" style="margin-bottom: 24px;">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" id="profile-avatar-img" class="worker-avatar" alt="Pratyush Sharma" />
+                <div>
+                  <h4 style="font-size: 15px; font-weight: 800; color: var(--secondary);" id="profile-name-text">Pratyush Sharma</h4>
+                  <p style="font-size: 12px; color: var(--text-secondary);">+91 98765 43210 • pratyush@freshtrust.luxury</p>
+                </div>
+              </div>
+              <button class="btn-secondary" style="font-size: 11px; padding: 6px 12px;" onclick="openEditProfileModal()">Edit</button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+              <button class="btn-secondary" style="text-align: left; padding: 16px; align-items: flex-start; flex-direction: column;" onclick="navigateToScreen('screen-membership')">👑 <b>Atelier Pass VIP</b><br/><span style="font-size:11px; color:var(--text-muted);">View perks & renewal</span></button>
+              <button class="btn-secondary" style="text-align: left; padding: 16px; align-items: flex-start; flex-direction: column;" onclick="navigateToScreen('screen-wallet')">💳 <b>Wallet Balance</b><br/><span style="font-size:11px; color:var(--text-muted);">₹1,450 available</span></button>
+              <button class="btn-secondary" style="text-align: left; padding: 16px; align-items: flex-start; flex-direction: column;" onclick="navigateToScreen('screen-addresses')">🏠 <b>Saved Addresses</b><br/><span style="font-size:11px; color:var(--text-muted);">Home, Office</span></button>
+              <button class="btn-secondary" style="text-align: left; padding: 16px; align-items: flex-start; flex-direction: column;" onclick="navigateToScreen('screen-support')">💬 <b>Atelier Concierge</b><br/><span style="font-size:11px; color:var(--text-muted);">24/7 Live Support</span></button>
+            </div>
+
+            <!-- Profile Settings Accordions -->
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>⚙️ Account Settings & Theme</span><span>▾</span>
+              </div>
+              <div class="accordion-body">
+                <label style="display: flex; justify-content: space-between; margin-bottom: 10px; cursor: pointer;">
+                  <span>Dark Glassmorphism UI Theme</span><input type="checkbox" checked />
+                </label>
+                <label style="display: flex; justify-content: space-between; margin-bottom: 10px; cursor: pointer;">
+                  <span>Push Notifications & SMS Alerts</span><input type="checkbox" checked />
+                </label>
+                <label style="display: flex; justify-content: space-between; cursor: pointer;">
+                  <span>Biometric / Face ID Login</span><input type="checkbox" checked />
+                </label>
+              </div>
+            </div>
+
+            <button class="btn-danger" style="width: 100%; margin-top: 24px;" onclick="simulateLogout()">
+              🔒 Logout from Studio Session
+            </button>
+          </div>
+
+          <!-- 21. MEMBERSHIP SCREEN (`#screen-membership`) -->
+          <div id="screen-membership" class="screen-content">
+            <div style="background: linear-gradient(135deg, #111111 0%, #2D2408 100%); border: 2px solid var(--gold); border-radius: var(--radius-lg); padding: 24px; color: #fff; margin-bottom: 24px; text-align: center;">
+              <span style="font-size: 48px;">👑</span>
+              <h2 style="font-size: 26px; font-weight: 800; color: var(--gold); margin: 8px 0;">Atelier Pass VIP</h2>
+              <p style="font-size: 14px; color: #CBD5E1; margin-bottom: 20px;">India's Premier Meat Connoisseur Membership</p>
+              <div style="display: flex; justify-content: space-around; border-top: 1px solid rgba(212,175,55,0.3); padding-top: 16px;">
+                <div><b style="color:var(--gold); font-size:18px;">₹0</b><br/><span style="font-size:11px;">Delivery Fee</span></div>
+                <div><b style="color:var(--gold); font-size:18px;">Priority</b><br/><span style="font-size:11px;">Live Cutting Queue</span></div>
+                <div><b style="color:var(--gold); font-size:18px;">2%</b><br/><span style="font-size:11px;">Wallet Cashback</span></div>
+              </div>
+            </div>
+
+            <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--secondary);">Compare Plans</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+              <div style="background: #fff; border: 2px solid var(--gold); border-radius: var(--radius-md); padding: 16px; text-align: center;">
+                <h5 style="font-size: 15px; font-weight: 800; color: var(--gold);">Gold Annual</h5>
+                <div style="font-size: 22px; font-weight: 900; margin: 8px 0;">₹499/yr</div>
+                <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 14px;">Free delivery on orders above ₹499 + 2% cashback.</p>
+                <button class="btn-primary" style="background: var(--gold); color: #000; font-size: 12px;" onclick="renewMembership('Gold Plan (₹499)')">Renew Gold</button>
+              </div>
+              <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; text-align: center;">
+                <h5 style="font-size: 15px; font-weight: 800;">Platinum 2-Year</h5>
+                <div style="font-size: 22px; font-weight: 900; margin: 8px 0;">₹899/2yr</div>
+                <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 14px;">Unlimited 0₹ delivery on ALL orders + Priority Studio.</p>
+                <button class="btn-secondary" style="width: 100%; font-size: 12px;" onclick="renewMembership('Platinum Plan (₹899)')">Upgrade Platinum</button>
+              </div>
+            </div>
+
+            <button class="btn-danger" style="width: 100%;" onclick="cancelMembership()">Cancel Membership Plan</button>
+          </div>
+
+          <!-- 22. WALLET SCREEN (`#screen-wallet`) -->
+          <div id="screen-wallet" class="screen-content">
+            <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; text-align: center; margin-bottom: 20px;">
+              <span style="font-size: 13px; color: var(--text-secondary); text-transform: uppercase; font-weight: 700;">Available Butcher Wallet Balance</span>
+              <h2 style="font-size: 38px; font-weight: 900; color: var(--primary); margin: 8px 0;" id="wallet-balance-val">₹1,450</h2>
+              <p style="font-size: 12px; color: var(--accent); font-weight: 700;">✅ Instant 1-click payment enabled for your next live order</p>
+              
+              <div style="display: flex; gap: 10px; justify-content: center; margin-top: 18px;">
+                <button class="btn-primary" style="width: auto; padding: 10px 20px;" onclick="openAddMoneyModal()">+ Add Money</button>
+                <button class="btn-secondary" style="width: auto; padding: 10px 20px;" onclick="redeemCashback()">Redeem Cashback</button>
+              </div>
+            </div>
+
+            <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--secondary);">Transaction History</h4>
+            <div id="wallet-tx-list" style="display: flex; flex-direction: column; gap: 10px;">
+              <!-- Rendered via app.js -->
+            </div>
+          </div>
+
+          <!-- 23. SAVED ADDRESSES SCREEN (`#screen-addresses`) -->
+          <div id="screen-addresses" class="screen-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h2 style="font-size: 22px; font-weight: 800; color: var(--secondary);">Saved Addresses</h2>
+              <button class="btn-primary" style="width: auto; padding: 8px 16px; font-size: 12px;" onclick="openAddressModal()">+ Add New</button>
+            </div>
+            <div id="addresses-list-page" style="display: flex; flex-direction: column; gap: 12px;">
+              <!-- Rendered via app.js -->
+            </div>
+          </div>
+
+          <!-- 24. CONCIERGE SUPPORT SCREEN (`#screen-support`) -->
+          <div id="screen-support" class="screen-content">
+            <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--secondary);">Atelier Concierge Support</h2>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Available 24/7 to resolve any query about your live cutting or cold chain.</p>
+            <div class="chat-window">
+              <div class="chat-messages" id="support-chat-messages" style="height: 240px;">
+                <div class="chat-msg chef">👋 Hello Pratyush! I am your AI Concierge & Quality Specialist. How can I assist with Order #FT-89241 or our Live Studio today?</div>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" class="text-input" id="support-chat-input" placeholder="Type your query..." onkeypress="if(event.key === 'Enter') sendSupportMessage()" />
+                <button class="btn-primary" style="width: auto;" onclick="sendSupportMessage()">Send</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 25. RATINGS & REVIEW SCREEN (`#screen-ratings`) -->
+          <div id="screen-ratings" class="screen-content">
+            <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--secondary);">Rate Your Experience</h2>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Help us maintain India's highest trust standard.</p>
+            <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; text-align: center;">
+              <span style="font-size: 44px; cursor: pointer;" onclick="setRatingStars(5)">⭐⭐⭐⭐⭐</span>
+              <h4 style="margin: 12px 0;">5.0 / 5.0 Exceptional Quality</h4>
+              <textarea class="text-input" rows="3" placeholder="Share your experience about the live cutting and marbling..." style="margin-bottom: 16px;"></textarea>
+              <button class="btn-primary" onclick="submitReviewFeedback()">Submit Review & Get 50 Loyalty Coins →</button>
+            </div>
+          </div>
+
+          <!-- 26. NOTIFICATIONS SCREEN (`#screen-notifications`) -->
+          <div id="screen-notifications" class="screen-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h2 style="font-size: 22px; font-weight: 800; color: var(--secondary);">Notification Center</h2>
+              <button class="btn-secondary" style="font-size: 11px; padding: 6px 12px;" onclick="markAllNotificationsRead()">Mark all read</button>
+            </div>
+            <div id="notif-list-container">
+              <div class="accordion-item" style="background: var(--accent-light); border: 1px solid rgba(46,125,50,0.2); padding: 14px; border-radius: var(--radius-md); margin-bottom: 12px; cursor: pointer;" onclick="navigateToScreen('screen-live-cam')">
+                <h5 style="font-size: 14px; font-weight: 800; color: var(--accent);">🎥 Chef Marcus started Live Cutting for Order #FT-89241!</h5>
+                <p style="font-size: 12px; color: #1B5E20; margin-top: 4px;">Connect to Station 1 HD video stream now to verify weight and custom instructions.</p>
+              </div>
+              <div class="accordion-item" style="background: #fff; border: 1px solid var(--border); padding: 14px; border-radius: var(--radius-md); margin-bottom: 12px; cursor: pointer;" onclick="navigateToScreen('screen-categories')">
+                <h5 style="font-size: 14px; font-weight: 700;">🏷️ New Welcome Coupon Code Added!</h5>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Use FRESHTRUST50 for flat ₹150 discount.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 27. 404 ERROR / EMPTY STATE (`#screen-404`) -->
+          <div id="screen-404" class="screen-content">
+            <div style="text-align: center; padding: 60px 20px;">
+              <span style="font-size: 64px;">🛑</span>
+              <h2 style="font-size: 24px; font-weight: 800; color: var(--secondary); margin: 12px 0 6px 0;">404 — Screen Not Found</h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 24px;">The requested module or page is unavailable in this session.</p>
+              <button class="btn-primary" style="max-width: 220px; margin: 0 auto;" onclick="navigateToScreen('screen-home')">← Return Home</button>
+            </div>
+          </div>
+
+        </div> <!-- End of .customer-app-content -->
+
+        <!-- Bottom Apple Navigation Bar (`.app-navbar`) -->
+        <nav class="app-navbar">
+          <button class="nav-item active" onclick="navigateToScreen('screen-home', this)">
+            <span class="nav-icon">🏠</span><span>Home</span>
+          </button>
+          <button class="nav-item" onclick="navigateToScreen('screen-categories', this)">
+            <span class="nav-icon">🥩</span><span>Categories</span>
+          </button>
+          <button class="nav-item" onclick="navigateToScreen('screen-live-cam', this)">
+            <span class="nav-icon">🎥</span><span>Live Cam</span>
+          </button>
+          <button class="nav-item" onclick="navigateToScreen('screen-order-history', this)">
+            <span class="nav-icon">📦</span><span>Orders</span>
+          </button>
+          <button class="nav-item" onclick="navigateToScreen('screen-profile', this)">
+            <span class="nav-icon">👤</span><span>Profile</span>
+          </button>
+        </nav>
+
+      </div> <!-- End of `#suite-customer` -->
+
+      <!-- ==================================================================
+           SUITE 2: WORKER / BUTCHER APPLICATION (`#suite-worker`)
+           ================================================================== -->
+      <div id="suite-worker" class="suite-view" style="padding: 24px;">
+        <div style="background: #111111; color: #fff; padding: 18px; border-radius: var(--radius-lg); margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <span style="font-size: 11px; font-weight: 800; color: var(--gold); text-transform: uppercase;">Station 1 Studio Bench</span>
+            <h3 style="font-size: 18px; font-weight: 800;">Chef Marcus V. (Master Butcher)</h3>
+            <p style="font-size: 12px; color: #94A3B8;">Hygiene Score: 99.8% • Bluetooth Scale Connected ✅</p>
+          </div>
+          <span style="background: var(--accent); color: #fff; font-size: 12px; font-weight: 800; padding: 6px 12px; border-radius: var(--radius-full);">ON DUTY</span>
+        </div>
+
+        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 14px; color: var(--secondary);">Active Assigned Live Order</h3>
+        <div style="background: #fff; border: 2px solid var(--primary); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-md); margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 14px;">
+            <div>
+              <span style="font-size: 12px; font-weight: 800; color: var(--primary);">ORDER #FT-89241</span>
+              <h4 style="font-size: 16px; font-weight: 800; color: var(--secondary);">Pratyush Sharma (+91 98765 43210)</h4>
+            </div>
+            <span style="background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 6px;">LIVE QUEUE</span>
+          </div>
+
+          <div style="font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--secondary);">
+            • 500g Artisanal Lamb Rib Chops (Curry Cut)<br/>
+            • 500g Country Chicken Curry Cut (Skinless)
+          </div>
+          <p style="font-size: 12px; color: var(--primary); background: var(--primary-light); padding: 10px; border-radius: 8px; font-weight: 700; margin-bottom: 16px;">
+            🔪 Customer Note: "Remove excess fat from the edges, medium 3cm dice for biryani."
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button class="btn-primary" style="font-size: 15px; padding: 16px;" onclick="workerStartLiveStream()">
+              🎥 Start Live Stream Camera & Scale Sync
+            </button>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <button class="btn-secondary" style="font-weight: 800; color: var(--warning); border-color: var(--warning);" onclick="showToast('⏸️ Live broadcast paused for bench cleaning')">⏸️ Pause Live</button>
+              <button class="btn-secondary" style="font-weight: 800; color: var(--accent); border-color: var(--accent);" onclick="showToast('▶️ Live broadcast resumed')">▶️ Resume Live</button>
+            </div>
+            <button class="btn-secondary" style="font-weight: 800; color: var(--accent); border-color: var(--accent);" onclick="workerVerifyScale()">
+              ⚖️ Verify Bluetooth Weight (502g) ✅
+            </button>
+            <button class="btn-secondary" onclick="showToast('📦 Vacuum Packed at 1.8°C & QR Code Printed!')">
+              📦 Mark Vacuum Sealed & Print QR Code
+            </button>
+            <button class="btn-primary" style="background: var(--accent);" onclick="workerFinishOrder()">
+              ✅ Quality Check Sign-off & Finish Order
+            </button>
+          </div>
+        </div>
+      </div> <!-- End of `#suite-worker` -->
+
+      <!-- ==================================================================
+           SUITE 3: SHOP OWNER DASHBOARD (`#suite-shop-owner`)
+           ================================================================== -->
+      <div id="suite-shop-owner" class="suite-view">
+        <div class="dashboard-layout" style="min-height: 100%;">
+          <aside class="dashboard-sidebar">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--gold); margin-bottom: 16px; padding: 0 12px;">🏬 Atelier Studio</h3>
+            <div class="dash-nav-item active" onclick="switchShopTab('overview', this)">📊 Studio Overview</div>
+            <div class="dash-nav-item" onclick="switchShopTab('orders', this)">📋 Orders Kanban</div>
+            <div class="dash-nav-item" onclick="switchShopTab('inventory', this)">🥩 Inventory CRUD</div>
+            <div class="dash-nav-item" onclick="switchShopTab('coupons', this)">🏷️ Coupons CRUD</div>
+            <div class="dash-nav-item" onclick="switchShopTab('cameras', this)">🎥 Live Cameras (4)</div>
+            <div class="dash-nav-item" onclick="switchShopTab('reports', this)">📈 Sales & Analytics</div>
+          </aside>
+          <main class="dashboard-main" style="width: calc(100% - 260px);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+              <div>
+                <h2 style="font-size: 24px; font-weight: 800; color: var(--secondary);">Studio Dashboard Engine</h2>
+                <p style="font-size: 13px; color: var(--text-secondary);">Atelier Meat Co. (Flagship Studio) • FSSAI Audited #10019043002812</p>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button class="btn-secondary" style="font-size: 12px;" onclick="openProductCrudModal()">+ Add New Product</button>
+                <button class="btn-primary" style="width: auto; font-size: 12px;" onclick="showToast('🔄 Live orders and revenue metrics refreshed!')">🔄 Refresh Data</button>
+              </div>
+            </div>
+
+            <!-- Tab Content Container -->
+            <div id="shop-tab-overview">
+              <div class="kpi-grid">
+                <div class="kpi-card"><h5>Gross Revenue Today</h5><div class="kpi-val">₹1,84,250</div><p style="font-size:12px; color:var(--accent); font-weight:700; margin-top:6px;">↗ +18.4% vs last Sat</p></div>
+                <div class="kpi-card"><h5>Active Live Orders</h5><div class="kpi-val">24 Orders</div><p style="font-size:12px; color:var(--primary); font-weight:700; margin-top:6px;">🎥 4 Stations Streaming</p></div>
+                <div class="kpi-card"><h5>Avg Preparation Speed</h5><div class="kpi-val">11.4 mins</div><p style="font-size:12px; color:var(--info); font-weight:700; margin-top:6px;">⚡ Swiggy Instamart Speed</p></div>
+                <div class="kpi-card"><h5>Customer Trust Rating</h5><div class="kpi-val">4.98 / 5.0</div><p style="font-size:12px; color:var(--gold); font-weight:700; margin-top:6px;">⭐⭐⭐⭐⭐ (3,420 Reviews)</p></div>
+              </div>
+
+              <!-- Inventory Status Table preview -->
+              <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 24px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                  <h4 style="font-size: 16px; font-weight: 800; color: var(--secondary);">Live Stock & Dynamic Pricing Matrix</h4>
+                  <button class="btn-secondary" style="font-size: 12px;" onclick="switchShopTab('inventory', document.querySelectorAll('.dash-nav-item')[2])">Manage Inventory →</button>
+                </div>
+                <table class="data-table" id="shop-inv-table">
+                  <!-- Rendered via app.js -->
+                </table>
+              </div>
+            </div>
+
+            <div id="shop-tab-orders" style="display:none;">
+              <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 16px; color: var(--secondary);">Live Orders Kanban Pipeline</h4>
+              <div class="kanban-board">
+                <div class="kanban-col"><h4>Incoming (2)</h4><div class="kanban-card" onclick="alert('Order #FT-89241 Details:\nPratyush Sharma • ₹959\nStatus: Ready for Live Bench')"><b>#FT-89241 • ₹959</b><p style="font-size:11px; color:var(--text-muted);">500g Lamb + 500g Chicken</p><div style="display:flex; gap:6px; margin-top:8px;"><button class="btn-primary" style="padding:4px; font-size:11px;" onclick="event.stopPropagation(); showToast('Order #FT-89241 Accepted!')">Accept</button><button class="btn-danger" style="padding:4px; font-size:11px;" onclick="event.stopPropagation(); showToast('Order Rejected')">Reject</button></div></div></div>
+                <div class="kanban-col"><h4>Accepted (4)</h4><div class="kanban-card"><b>#FT-89201 • ₹1,420</b><p style="font-size:11px; color:var(--text-muted);">Wagyu Ribeye (250g)</p><p style="font-size:11px; color:var(--primary); font-weight:700;">Assigned: Chef Marcus</p></div></div>
+                <div class="kanban-col"><h4>Live Streaming (4)</h4><div class="kanban-card" style="border-left-color: var(--accent);"><b>#FT-89190 • ₹680</b><p style="font-size:11px; color:var(--text-muted);">Lamb Rib Chops</p><span style="background:var(--accent); color:#fff; font-size:10px; padding:2px 6px; border-radius:4px;">REC STATION 1</span></div></div>
+                <div class="kanban-col"><h4>Ready / Dispatched (14)</h4><div class="kanban-card"><b>#FT-89140 • ₹2,100</b><p style="font-size:11px; color:var(--text-muted);">Rider: Vikram S.</p></div></div>
+              </div>
+            </div>
+
+            <div id="shop-tab-inventory" style="display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h4 style="font-size:16px; font-weight:800; color: var(--secondary);">Inventory CRUD Management</h4>
+                <button class="btn-primary" style="width:auto;" onclick="openProductCrudModal()">+ Create New Product</button>
+              </div>
+              <table class="data-table" id="shop-inv-full-table"></table>
+            </div>
+
+            <div id="shop-tab-coupons" style="display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h4 style="font-size:16px; font-weight:800; color: var(--secondary);">Promo Coupons CRUD</h4>
+                <button class="btn-primary" style="width:auto;" onclick="openCouponCrudModal()">+ Create New Coupon</button>
+              </div>
+              <table class="data-table" id="shop-coupons-table"></table>
+            </div>
+
+            <div id="shop-tab-cameras" style="display:none;">
+              <h4 style="font-size:16px; font-weight:800; margin-bottom:16px; color: var(--secondary);">Multi-Camera Studio Matrix (4 Stations)</h4>
+              <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;">
+                <div style="background:#000; border-radius:var(--radius-md); overflow:hidden; height:240px; position:relative; border:2px solid var(--primary);"><img src="https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=800&auto=format&fit=crop&q=80" style="width:100%; height:100%; object-fit:cover;" /><div style="position:absolute; top:10px; left:10px; background:rgba(0,0,0,0.8); color:#fff; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:800;">🎥 Station 1: Mutton Bench (Chef Marcus)</div></div>
+                <div style="background:#000; border-radius:var(--radius-md); overflow:hidden; height:240px; position:relative; border:2px solid #222;"><img src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=800&auto=format&fit=crop&q=80" style="width:100%; height:100%; object-fit:cover;" /><div style="position:absolute; top:10px; left:10px; background:rgba(0,0,0,0.8); color:#fff; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:800;">🎥 Station 2: Poultry Bench (Chef Rajesh)</div></div>
+              </div>
+            </div>
+
+            <div id="shop-tab-reports" style="display:none;">
+              <h4 style="font-size:16px; font-weight:800; margin-bottom:16px; color: var(--secondary);">Sales Reports & Analytics Export</h4>
+              <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px;">
+                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Export daily FSSAI temperature logs and revenue CSV reports.</p>
+                <button class="btn-primary" style="width:auto;" onclick="showToast('📥 Sales_Report_July2026.csv downloaded successfully!')">📥 Download CSV Report</button>
+              </div>
+            </div>
+
+          </main>
+        </div>
+      </div> <!-- End of `#suite-shop-owner` -->
+
+      <!-- ==================================================================
+           SUITE 4: DELIVERY PARTNER APPLICATION (`#suite-delivery`)
+           ================================================================== -->
+      <div id="suite-delivery" class="suite-view" style="padding: 24px;">
+        <div style="background: var(--accent-light); border: 2px solid var(--accent); border-radius: var(--radius-lg); padding: 18px; margin-bottom: 20px;">
+          <h4 style="font-size: 16px; font-weight: 800; color: var(--accent);">Active Delivery Trip #FT-89241</h4>
+          <p style="font-size: 13px; color: #1B5E20; margin-top: 4px;">Pickup: <b>Atelier Meat Co. (BKC)</b><br/>Drop: <b>Apartment 4B, Palm Heights</b></p>
+        </div>
+
+        <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+          <h5 style="font-size: 14px; font-weight: 800; margin-bottom: 10px; color: var(--secondary);">Turn-by-Turn Apple Maps Navigation</h5>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">Continuing straight over BKC Flyover (~1.4 km remaining)</p>
+          <button class="btn-primary" onclick="showToast('🗺️ GPS simulated navigation voice: Turn left onto Palm Heights road in 200m.')">
+            🗺️ Open Full GPS Route Simulation
+          </button>
+        </div>
+
+        <div style="background: #fff; border: 2px solid var(--primary); border-radius: var(--radius-lg); padding: 20px; text-align: center;">
+          <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 8px; color: var(--secondary);">Doorstep OTP Verification</h4>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">Ask customer Pratyush for 4-digit delivery code:</p>
+          <input type="text" class="text-input" id="delivery-otp-input" placeholder="Enter 4926" style="text-align: center; font-size: 22px; font-weight: 800; max-width: 200px; margin: 0 auto 16px auto;" />
+          <button class="btn-primary" onclick="verifyDeliveryOtp()">
+            ✅ Verify OTP & Mark Delivered
+          </button>
+        </div>
+      </div> <!-- End of `#suite-delivery` -->
+
+      <!-- ==================================================================
+           SUITE 5: SUPER ADMIN DASHBOARD (`#suite-super-admin`)
+           ================================================================== -->
+      <div id="suite-super-admin" class="suite-view" style="padding: 24px;">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 6px; color: var(--secondary);">FreshTrust Super Admin Governance Engine</h2>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Global Platform Governance, FSSAI Audits & AI Fraud Detection</p>
+
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 24px;">
+          <div class="kpi-card"><h5>Total Platform GMV</h5><div class="kpi-val">₹42.5 Lakhs</div><div style="font-size:12px; color:var(--accent); font-weight:700; margin-top:6px;">142 Active Studios</div></div>
+          <div class="kpi-card"><h5>Today's Commission</h5><div class="kpi-val">₹33,165</div><div style="font-size:12px; color:var(--gold); font-weight:700; margin-top:6px;">18,400 VIP Members</div></div>
+        </div>
+
+        <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--secondary);">Shop Compliance & FSSAI Governance Matrix</h4>
+        <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; margin-bottom: 24px;">
+          <table class="data-table" id="admin-shops-table">
+            <!-- Rendered via app.js -->
+          </table>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <button class="btn-primary" onclick="showToast('📢 Push notification broadcast sent to 100,000+ users!')">📢 Broadcast Push Notification</button>
+          <button class="btn-secondary" onclick="showToast('🔍 AI Fraud cluster scan completed: 0 critical vulnerabilities found.')">🔍 Run AI Fraud Audit</button>
+        </div>
+      </div> <!-- End of `#suite-super-admin` -->
+
+    </div> <!-- End of `#device-frame` -->
+  </main>
+
+  <!-- ======================================================================
+       MODALS, DRAWERS & OVERLAYS
+       ====================================================================== -->
+
+  <!-- 1. Search Modal (`#modal-search`) -->
+  <div id="modal-search" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--secondary);">🔍 Search & Voice Engine</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-search')">✕</button>
+      </div>
+      <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <input type="text" class="text-input" id="modal-search-input" placeholder="Type 'Wagyu', 'Salmon' or 'Mutton'..." oninput="handleLiveSearch(this.value)" autofocus />
+        <button class="btn-primary" style="width: auto; padding: 12px 16px;" onclick="simulateVoiceSearch()">🎙️ Voice</button>
+      </div>
+      <div id="search-suggestions-box">
+        <h5 style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Trending Searches</h5>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;" id="trending-search-tags"></div>
+        <h5 style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Recent Search History</h5>
+        <div style="display: flex; flex-direction: column; gap: 8px;" id="recent-search-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Filter Modal (`#modal-filter`) -->
+  <div id="modal-filter" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--secondary);">🎛️ Filter & Sort Cuts</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-filter')">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div>
+          <label class="input-label">Max Price Limit: <span id="price-slider-val" style="color:var(--primary);">₹5000</span></label>
+          <input type="range" min="200" max="10000" step="100" value="5000" style="width:100%;" oninput="document.getElementById('price-slider-val').innerText = `₹${this.value}`" />
+        </div>
+        <div>
+          <label class="input-label">Minimum Hygiene Score</label>
+          <select class="text-input"><option>99.0% & Above</option><option>95.0% & Above</option><option>All Audited Shops</option></select>
+        </div>
+        <div>
+          <label class="input-label">Cut Type & Certifications</label>
+          <label style="display:flex; align-items:center; gap:8px; font-size:13px; margin-bottom:6px;"><input type="checkbox" checked /> 100% Halal Certified</label>
+          <label style="display:flex; align-items:center; gap:8px; font-size:13px; margin-bottom:6px;"><input type="checkbox" checked /> Live Camera Studio Available</label>
+          <label style="display:flex; align-items:center; gap:8px; font-size:13px;"><input type="checkbox" checked /> Free Range & Organic</label>
+        </div>
+        <button class="btn-primary" onclick="applyFiltersAndClose()">Apply Filters & Show Cuts →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Address CRUD Modal (`#modal-address-crud`) -->
+  <div id="modal-address-crud" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--secondary);" id="addr-modal-title">+ Add New Delivery Address</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-address-crud')">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <input type="hidden" id="addr-edit-id" value="" />
+        <div class="input-group"><label class="input-label">Tag / Label</label><input type="text" class="text-input" id="addr-tag-input" placeholder="Home / Office / Studio" /></div>
+        <div class="input-group"><label class="input-label">Full Address with Pincode</label><textarea class="text-input" id="addr-full-input" rows="2" placeholder="Apartment 4B, Palm Heights, BKC Road, Mumbai - 400051"></textarea></div>
+        <div class="input-group"><label class="input-label">Contactless Delivery Instructions</label><input type="text" class="text-input" id="addr-inst-input" placeholder="Ring bell twice. Leave at door if no response." /></div>
+        <button class="btn-primary" onclick="saveAddressCrud()">Save Address →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Product CRUD Modal (`#modal-product-crud`) -->
+  <div id="modal-product-crud" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--secondary);" id="prod-modal-title">+ Create New Product</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-product-crud')">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <input type="hidden" id="prod-edit-id" value="" />
+        <div class="input-group"><label class="input-label">Product Name</label><input type="text" class="text-input" id="prod-name-input" placeholder="Exotic Wagyu Ribeye" /></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div class="input-group"><label class="input-label">Price (₹)</label><input type="number" class="text-input" id="prod-price-input" placeholder="680" /></div>
+          <div class="input-group"><label class="input-label">Unit Label</label><input type="text" class="text-input" id="prod-unit-input" placeholder="500g" /></div>
+        </div>
+        <button class="btn-primary" onclick="saveProductCrud()">Save Product →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Coupon CRUD Modal (`#modal-coupon-crud`) -->
+  <div id="modal-coupon-crud" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--secondary);">+ Create Promo Coupon</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-coupon-crud')">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="input-group"><label class="input-label">Coupon Code</label><input type="text" class="text-input" id="coupon-code-input" placeholder="FLASH20" /></div>
+        <div class="input-group"><label class="input-label">Discount Value (₹)</label><input type="number" class="text-input" id="coupon-val-input" placeholder="150" /></div>
+        <button class="btn-primary" onclick="saveCouponCrud()">Save Coupon →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Video Replay Modal (`#video-replay-modal`) -->
+  <div id="video-replay-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 640px; background:#111; color:#fff; border: 2px solid var(--primary);">
+      <div class="modal-header" style="border-color: rgba(255,255,255,0.1);">
+        <h3 style="font-size: 18px; font-weight: 800;">🎥 Replay Order Recording #FT-78102</h3>
+        <button class="modal-close-btn" style="background:var(--primary); color:#fff; border:none;" onclick="closeModal('video-replay-modal')">✕</button>
+      </div>
+      <p style="font-size:12px; color:#94A3B8; margin-bottom:14px;">Recorded on 15 July at Global Wagyu & Artisanal Seafood bench.</p>
+      <div style="height:340px; background:#000; border-radius:var(--radius-md); overflow:hidden;">
+        <img id="replay-video-img" src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=1000&auto=format&fit=crop&q=80" style="width:100%; height:100%; object-fit:cover;" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Profile Switcher Modal (`#modal-profile-switcher`) -->
+  <div id="modal-profile-switcher" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--secondary);">👤 Switch Session Persona</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-profile-switcher')">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <button class="btn-secondary" style="justify-content:flex-start; padding:14px;" onclick="switchSessionPersona('Pratyush Sharma', '+91 98765 43210', 'VIP Atelier Gold')">👑 <b>Pratyush Sharma</b> (VIP Member • ₹1,450 Wallet)</button>
+        <button class="btn-secondary" style="justify-content:flex-start; padding:14px;" onclick="switchSessionPersona('Neha R.', '+91 98111 22334', 'Standard User')">👤 <b>Neha R.</b> (Standard Connoisseur • ₹0 Wallet)</button>
+        <button class="btn-secondary" style="justify-content:flex-start; padding:14px;" onclick="switchSessionPersona('Guest User', '+91 00000 00000', 'Guest')">🌐 <b>Guest Mode</b> (Simulated exploration)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="mockData.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

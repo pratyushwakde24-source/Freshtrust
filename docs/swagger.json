@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "FreshTrust API Specification",
+    "description": "Enterprise API for India's Most Transparent Meat Delivery Platform with Live Butcher Cam",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/api",
+      "description": "Development Server"
+    },
+    {
+      "url": "https://api.freshtrust.in/api",
+      "description": "Production Server"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "Authenticate User & Generate JWT",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "role": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Successfully authenticated with JWT token" }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "summary": "Get fresh meat product catalog with custom cut options",
+        "responses": {
+          "200": { "description": "List of available products and inventory stock" }
+        }
+      }
+    },
+    "/orders": {
+      "post": {
+        "summary": "Create new meat order with live butcher cam tracking",
+        "responses": {
+          "200": { "description": "Order created successfully" }
+        }
+      }
+    },
+    "/payments/razorpay/create-order": {
+      "post": {
+        "summary": "Initialize Razorpay payment order",
+        "responses": {
+          "200": { "description": "Razorpay Order ID returned" }
+        }
+      }
+    },
+    "/payments/razorpay/verify": {
+      "post": {
+        "summary": "Verify HMAC-SHA256 Razorpay payment signature",
+        "responses": {
+          "200": { "description": "Signature verified" }
+        }
+      }
+    }
+  }
+}
